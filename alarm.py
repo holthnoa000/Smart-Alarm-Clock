@@ -8,7 +8,7 @@ def alarm():
     current_time = time.strftime("%I:%M")
     ampm = time.strftime("%p")
     
-    if current_time == "11:37" and ampm == "AM":
+    if current_time == "11:37" and ampm == "AM": #need to make this more general so inputing the time isn't so tedious
         pygame.mixer.music.play()
         print(current_time , ampm)
         while pygame.mixer.music.get_busy() == True:
