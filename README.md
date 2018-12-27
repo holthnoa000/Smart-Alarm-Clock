@@ -4,4 +4,4 @@ This project is still very early on and currently only has basic alarm clock fun
 
 ![img_20181221_151613](https://user-images.githubusercontent.com/32803806/50365141-d0bf0d80-0538-11e9-9ce2-a0c4d6e5820c.jpg)
 
-List of features to add: Arcade button to snooze/stop the alarm, Google Assistant functionality, pixel art display mode.
+List of features to add: Wooden housing, button to snooze/stop the alarm, Google Assistant functionality, pixel art display mode.
