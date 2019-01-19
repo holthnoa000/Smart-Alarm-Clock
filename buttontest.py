@@ -10,7 +10,8 @@ leds = {
     18: 14,
     24: 15,
     8: 25,
-    7: 19
+    7: 19,
+    9: 10
 }
 
 for button, led in leds.items():
@@ -47,7 +48,7 @@ def lookForButtons(buttonNum):
             # active button was re-pressed, turn it off and clear screen
             pressed = 0
             time.sleep(0.6)
-            
+
 while True:
     for key in leds:
         lookForButtons(key)
