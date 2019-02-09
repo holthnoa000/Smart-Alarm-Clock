@@ -8,24 +8,6 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-# Configuration for the matrix
-options = RGBMatrixOptions()
-options.rows = 32
-options.chain_length = 2
-options.parallel = 1
-options.hardware_mapping = 'adafruit-hat'
-
-#some variables
-matrix = RGBMatrix(options = options)
-font = graphics.Font()
-font.LoadFont("../../../fonts/8x13B.bdf")
-offscreen_canvas = matrix.CreateFrameCanvas()
-
-#Colors
-green = graphics.Color(0,150,0)
-red = graphics.Color(150,0,0)
-purple = graphics.Color(255,0,255)
-
 #Button / LED setup
 pressed = 0
 leds = {
@@ -39,6 +21,23 @@ leds = {
 for button, led in leds.items():
     GPIO.setup(led, GPIO.OUT)  # led
     GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
+
+# Configuration for the matrix
+options = RGBMatrixOptions()
+options.rows = 32
+options.chain_length = 2
+options.parallel = 1
+options.hardware_mapping = 'adafruit-hat'
+
+#some variables
+matrix = RGBMatrix(options = options)
+font = graphics.Font()
+font.LoadFont("../../../fonts/8x13B.bdf")
+
+#Colors
+green = graphics.Color(0,150,0)
+red = graphics.Color(150,0,0)
+purple = graphics.Color(255,0,255)
 
 def showReady():
     lp = 0
@@ -56,6 +55,7 @@ def clearlights():
 
 def lookForButtons(buttonNum):
     global pressed
+    offscreen_canvas = matrix.CreateFrameCanvas()
     input_state = GPIO.input(buttonNum)
     if not input_state:
         clearlights()
@@ -71,15 +71,17 @@ def lookForButtons(buttonNum):
                 9: 'button 5'
             }
 
-            graphics.DrawText(offscreen_canvas, font, 5, 20, green, buttontext.get(buttonNum,''))
+            graphics.DrawText(offscreen_canvas, font, 0, 20, red, buttontext.get(buttonNum,''))
             offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
             time.sleep(0.2)
+
             pressed = buttonNum
 
         else:
             # active button was re-pressed, turn it off and clear screen
             pressed = 0
-            offscreen_canvas.Clear() 
+            offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+            offscreen_canvas.Clear()
             time.sleep(0.6)
 
 while True:
