@@ -53,6 +53,15 @@ def clearlights():
     for led in leds.values():
         GPIO.output(led, False)
 
+def test1():
+    print("Button 18 works")
+
+def test2():
+    print("Button 8 works")
+
+def test3():
+    print("Button 24 works")
+
 def lookForButtons(buttonNum):
     global pressed
     offscreen_canvas = matrix.CreateFrameCanvas()
@@ -64,11 +73,11 @@ def lookForButtons(buttonNum):
             # new button was pressed
             GPIO.output(leds.get(buttonNum, ''), True)
             buttontext = {
-                18: , clearlights()
-                8: clearlights(),
-                24: clearlights(),
-                7: clearlights(),
-                9: clearlights()
+                18: test1(),
+                8: test2(),
+                24: test3(),
+                7: test3(),
+                9: test3()
             }
 
             buttontext[buttonNum]
